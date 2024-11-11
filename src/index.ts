@@ -42,10 +42,10 @@ app.listen(PORT, () => {
 
 });
 import readlineSync from 'readline-sync';
-import { Aluno } from './aluno';
-import { Curso } from "./curso";
-import { AlunoDAO } from "../dao/AlunoDAO";
-import { CursoDAO } from "../dao/cursoDAO";
+import { Aluno } from "./entities/aluno"; 
+import { Curso } from "./entities/curso";
+import { AlunoDAO } from "./dao/AlunoDAO";
+import { CursoDAO } from "./dao/cursoDAO";
 
 async function informações() {
 	try {
@@ -66,7 +66,6 @@ async function informações() {
 						console.log('Curso criado com sucesso!');
 					} catch (error) {
 						console.error('Erro ao criar curso!');
-						//return;
 					}
 				} else {
 					console.log('Curso ja cadastrado sendo utilizado!');
@@ -86,7 +85,6 @@ async function informações() {
 						console.log('Aluno criado com sucesso!');
 					} catch (error) {
 						console.error('Erro ao criar o aluno:', error);
-						//return;
 					}
 				} else {
 					console.log('Aluno já existente!');
