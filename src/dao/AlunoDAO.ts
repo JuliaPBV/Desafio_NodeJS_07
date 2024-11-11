@@ -6,7 +6,7 @@ export class AlunoDAO implements IDaoBase<Aluno> {
     async create(aluno: Aluno): Promise<void> {
         try {
             const sql = 'INSERT INTO alunos (id, nome, curso_id) VALUES ($1, $2, $3)';
-            await query(sql, [aluno.id, aluno.nome, aluno.cursoId]);
+            await query(sql, [aluno.nome, aluno.id, aluno.cursoId]);
         } catch (error) {
             console.error('Erro ao criar o aluno:', error);
         }
@@ -16,8 +16,8 @@ export class AlunoDAO implements IDaoBase<Aluno> {
         try {
             const result = await query('SELECT * FROM alunos WHERE id = $1', [id]);
             if (result.rows.length) {
-                const { id, nome, curso_id } = result.rows[0];
-                return new Aluno(id, nome, curso_id);
+                const { nome, id, curso_id } = result.rows[0];
+                return new Aluno(nome, id, curso_id);
             }
             return null;
         } catch (error) {
@@ -47,7 +47,7 @@ export class AlunoDAO implements IDaoBase<Aluno> {
     async findAll(): Promise<Aluno[]> {
         try {
             const result = await query('SELECT * FROM alunos');
-            return result.rows.map((row: { id: number, nome: string, cursoId: number }) => new Aluno(row.id, row.nome, row.cursoId));
+            return result.rows.map((row: { nome: string, id: number, cursoId: number }) => new Aluno(row.nome, row.id, row.cursoId));
         } catch (error) {
             console.error('Erro ao buscar os alunos:', error);
             return [];
