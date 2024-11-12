@@ -47,7 +47,7 @@ export class CursoDAO implements IDaoBase<Curso> {
     async findAll(): Promise<Curso[]> {
         try {
             const result = await query('SELECT * FROM cursos');
-            return result.rows.map((row: { id: number, nome: string }) => new Curso(row.id, row.nome));
+            return result.rows.map((row: { id: number, nome: string }) => new Curso(row.nome, row.id));
         } catch (error) {
             console.error('Erro ao buscar os cursos:', error);
             return [];

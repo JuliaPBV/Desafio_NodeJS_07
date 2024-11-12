@@ -76,7 +76,7 @@ async function informações() {
 				const nomeAluno = readlineSync.question('Digite o nome do aluno: ');
 				const alunoId = parseInt(readlineSync.question('Digite o ID do aluno: '), 10);
 				const cursoIdAluno = parseInt(readlineSync.question('Digite o ID do curso: '), 10);
-				const aluno = new Aluno(nomeAluno, alunoId, cursoIdAluno);
+				const aluno = new Aluno( alunoId, nomeAluno, cursoIdAluno);
 
 				const existeAluno = await alunoDAO.read(alunoId);
 				if (!existeAluno) {
